@@ -99,11 +99,6 @@
                 <action android:name="com.android.phone.EmergencyDialer.DIAL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="com.android.phone.EmergencyDialer.DIAL" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="tel" />
-            </intent-filter>
         </activity>
 
         <activity android:name="ADNList" />
@@ -442,7 +437,22 @@
         <activity android:name=".SipCallOptionHandler"
                 android:configChanges="orientation|keyboardHidden">
         </activity>
+        
+<!-- android:permission="com.android.phone.CHANGE_NETWORK_MODE" -->
+        <receiver android:name="com.android.phone.PhoneToggler">
+            <intent-filter>
+                <action android:name="com.android.internal.telephony.REQUEST_NETWORK_MODE" />
+                <action android:name="com.android.internal.telephony.MODIFY_NETWORK_MODE" />
+            </intent-filter>
+        </receiver>
 
     </application>
+    
+    <permission android:name="com.android.phone.CHANGE_NETWORK_MODE"
+        android:label="@string/per_change_mobile_network"
+        android:description="@string/per_change_mobile_network_desc"
+        android:permissionGroup="android.permission-group.COST_MONEY"
+        android:protectionLevel="dangerous" />
+        
 </manifest>
 
